@@ -1,10 +1,8 @@
 ## 1. vue-xuAdmin 后台模板简介
-> 这个权限管理就是为了方便,跟系统安全真的不沾边，只是根据后台返回的角色信息来生成他可以看见的菜单和按钮，显示菜单的方法是根据权限删除掉路由表里没有权限的路由，然后再动态添加，原本包含没有访问权限的原路由表只要打开页面运行代码就已经不存在了，并且404页面除了过滤掉项目没有的路由外，同时每次的路由跳转都会鉴权。如果你知道了没有权限的路由试着强行跳转会因为没有权限直接会跳转404。
-**就算通过查看代码或者其他方法获取全部路由，并且绕过404，花了这么大精力，，那你也看不到新世界的大门，因为所有数据都是通过后台请求返回来的，你没权限后台不会给你数据的，也不会让你去操作，，除非后台不验证权限，只要有人请求我就给你所有数据，，，，**
+>这个项目主要是参考vue-xuAdmin模板来进行改进，根据业务需求增加了很多vue组件的基本功能。基本技术架构为vue2.0全家桶+element-ui+leaflet组件库,实际上这个项目是整个大项目的前端部分，后期也会上传后端架构，目前设想是采用springboot+maybatis-Plus+kafka+redis。本人主要技术栈以后端架构为主，因此前端设计和整体代码逻辑可能有些许问题，希望多多包含。
 
-项目预览地址：https://nirongxu.github.io/vue-xuAdmin/dist/
+> 项目中可能比较难理解的地方在于权限设计，该权限设计核心思想是根据不同权限显示不同的菜单栏。此部分由原模板vue-xuAdmin开发，感兴趣可在github上搜vue-xuAdmin，参考相关代码释义，其中原版项目地址为https://nirongxu.github.io/vue-xuAdmin/dist/。
 
-vue-xuAdmin是基于vue2.0全家桶 + element-ui 开发的一个后台模板，实现了无限级菜单，页面、按钮级别的权限管理，为了减少前后端的沟通成本，页面、按钮级别的权限验证和动态路由表的存储校验，也都由前端完成，这样前端新建页面或者删除页面都不需要告诉后台去增加删除路由表
 
 ![enter description here](https://www.github.com/Nirongxu/xiaoshujiang/raw/master/1552796499128.png)
 ![enter description here](https://www.github.com/Nirongxu/xiaoshujiang/raw/master/1552796567032.png)
@@ -26,34 +24,18 @@ vue-xuAdmin是基于vue2.0全家桶 + element-ui 开发的一个后台模板，�
 - axios
 - scss
 - element-ui v2.4+
+- vue2leaflet
 
 ## 3. 实现功能
 ```
-- 登录、退出
-+ 基于token
-	- 状态拦截、404页面
-	- 动态加载路由
-	- 页面、按钮指令权限管理
-	- 无限级菜单
-- 封装vue-i18n@8.x国际化组件
-- 系统全屏化
-- 菜单收缩
-- icon 图标
-+ tab标签导航
-	- 右击快捷功能
-- 表格拖拽排序
-- 编辑器
-	- markdown（编辑器目前只封装了这一个组件，重写了markdown编辑和预览的皮肤，实时获取：markdown，html，json 三种格式文本）
-- Echarts 组件封装
-
-封装了一些element-ui没有但是常用的组件，正常需要的功能element-ui里面都有，可以直接复制
+主要是偏业务的操作，可以理解成对各个组件库的使用
 
 ```
 ## 4.开发使用
 ### 4.1开发
 ```
 # 克隆项目
-git clone https://github.com/Nirongxu/vue-xuAdmin.git
+git clone https://github.com/xc19950304/floodRiskAssessment-vue.git
 
 # 安装依赖 (如果安装失败就多安装几次，实在不行就换淘宝镜像)
 npm install
@@ -71,13 +53,6 @@ npm run unit
 # 启动编译打包生产环境
  npm run build
 ```
-
-### 4.2使用
-在开发和使用之前请务必阅读 `vue-xuAdmin`的使用介绍，详细介绍了框架的开发和使用教程
-- [Vue2.0 + ElementUI 手写权限管理系统后台模板（一）——简述](https://juejin.im/post/5c15332be51d4513ea6ed291)
-- [Vue2.0 + ElementUI 手写权限管理系统后台模板（二）——权限管理](https://juejin.im/post/5c1552a65188250850604bb0)
-- [Vue2.0 + ElementUI 手写权限管理系统后台模板（三）——页面搭建](https://juejin.im/post/5c156ae16fb9a049e660250c)
-- [Vue2.0 + ElementUI 手写权限管理系统后台模板（四）——组件结尾](https://juejin.im/post/5c1605e76fb9a049b41c5cb0)
 
 ## 5. 项目结构说明
 ```
