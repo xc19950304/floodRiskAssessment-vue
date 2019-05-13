@@ -1,15 +1,10 @@
 ## 1. floodRiskAssessment-vue后台模板简介
 >这个项目主要是参考vue-xuAdmin模板来进行改进，根据业务需求增加了很多vue组件的基本功能。基本技术架构为vue2.0全家桶+element-ui+leaflet组件库,实际上这个项目是整个大项目的前端部分，后期也会上传后端架构，目前设想是采用springboot+maybatis-Plus+kafka+redis。本人主要技术栈以后端架构为主，因此前端设计和整体代码逻辑可能有些许问题，希望多多包含。
 
-> 项目中可能比较难理解的地方在于权限设计，该权限设计核心思想是根据不同权限显示不同的菜单栏。此部分由原模板vue-xuAdmin开发，感兴趣可在github上搜vue-xuAdmin，参考相关代码释义，其中原版项目地址为https://nirongxu.github.io/vue-xuAdmin/dist/。
+> 项目中可能比较难理解的地方在于权限设计，该权限设计核心思想是根据不同权限显示不同的菜单栏。此部分由原模板vue-xuAdmin开发，感兴趣可在github上搜vue-xuAdmin，参考相关代码释义，其中原版项目在线访问地址为https://nirongxu.github.io/vue-xuAdmin/dist/，目前本项目还不完善，后期也会考虑发布供在线访问。
 
 
-![enter description here](https://www.github.com/Nirongxu/xiaoshujiang/raw/master/1552796499128.png)
-![enter description here](https://www.github.com/Nirongxu/xiaoshujiang/raw/master/1552796567032.png)
-![enter description here](https://i.loli.net/2018/12/12/5c10a2f90e38a.jpg)
-![enter description here](https://i.loli.net/2018/12/16/5c153f4998458.jpg)
-![enter description here](https://i.loli.net/2018/12/16/5c153fe516daf.jpg)
-![enter description here](https://i.loli.net/2018/12/12/5c102c115c130.jpg)
+
 ## 2. 准备工作
 -开发环境
 - node.js v8.0+
