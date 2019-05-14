@@ -4,7 +4,6 @@
 > 项目中可能比较难理解的地方在于权限设计，该权限设计核心思想是根据不同权限显示不同的菜单栏。此部分由原模板vue-xuAdmin开发，感兴趣可在github上搜vue-xuAdmin，参考相关代码释义，其中原版项目在线访问地址为https://nirongxu.github.io/vue-xuAdmin/dist/，目前本项目还不完善，后期也会考虑发布供在线访问。
 
 
-
 ## 2. 准备工作
 -开发环境
 - node.js v8.0+

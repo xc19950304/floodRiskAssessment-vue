@@ -21,15 +21,15 @@
           <ul>
             <li><router-link to="#"><span>灾害评估</span><span class="num">1</span></router-link></li>
             <li><router-link to="#"><span>损毁提取</span><span class="num">6</span></router-link></li>
-            <li><router-link to="#"><span>智能决策</span><span class="num">7</span></router-link></li>
-            <li><router-link to="#"><span>降雨预测</span><span class="num">3</span></router-link></li>
+            <li><router-link to="#"><span>交通流量分配</span><span class="num">7</span></router-link></li>
+            <li><router-link to="#"><span>水位预测</span><span class="num">3</span></router-link></li>
           </ul>
         </div>
       </el-col>
     </el-row>
     <el-row>
       <el-col :span="24">
-        <line-echarts id="lineEcharts" height="300px" ref="echarts"></line-echarts>
+        <simple-map id="lineEcharts" height="300px"></simple-map>
       </el-col>
     </el-row>
 
@@ -37,27 +37,13 @@
 </template>
 
 <script>
-import LineEcharts from '../../components/ECharts/lineEcharts'
-import Maintable from '../dataManagement/roadDataTable'
+import simpleMap from '../../views/taskManagement/simpleMap'
 export default {
   name: 'mainIndex',
-  components: {Maintable, LineEcharts},
+  components: {simpleMap},
   mounted () {
     this.selfAdaption()
   },
-  methods: {
-    // echart自适应
-    selfAdaption () {
-      let that = this
-      setTimeout(() => {
-        window.onresize = function () {
-          if (that.$refs.echarts) {
-            that.$refs.echarts.chart.resize()
-          }
-        }
-      }, 10)
-    }
-  }
 }
 </script>
 
@@ -203,7 +189,7 @@ export default {
   }
   #lineEcharts{
     margin-#{$top}: 20px;
-    padding-#{$top}: 20px;
+    padding-#{$top}: 5px;
     @extend %shadow;
   }
   #maintable{

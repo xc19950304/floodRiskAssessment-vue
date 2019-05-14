@@ -5,26 +5,14 @@
         <el-form-item label="任务名称">
           <el-input v-model="taskForm.name" placeholder="输入本次损毁道路提取任务名称" ></el-input>
         </el-form-item>
-        <el-form-item label="影像数据" >
-          <el-upload
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :before-remove="beforeRemove"
-            :auto-upload = "false"
-            :on-exceed="handleExceed"
-            :on-success="upLoadImage"
-            :on-remove = "removeImage"
-            multiple :limit="1">
-            <el-button size="small" type="primary" round >影像数据上传</el-button>
-          </el-upload>
+        <el-form-item label="影像分辨率">
+          <el-input v-model="taskForm.resolution" placeholder="输入影像分辨率(m)" ></el-input>
         </el-form-item>
-        <el-form-item label="矢量数据" >
-          <el-upload
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :before-remove="beforeRemove"
-            :on-exceed="handleExceed"
-            multiple :limit="1">
-            <el-button size="small" type="primary" round >矢量数据上传</el-button>
-          </el-upload>
+        <el-form-item label="影像数据选择" >
+          <el-select v-model="sensorImageChoose" filterable remote multiple reserve-keyword size="large" placeholder="请输入区域关键词(eg:长沙)" :remote-method="remoteMethod" :loading="loading">
+            <el-option v-for="item in sensorImageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="模型选择" >
           <el-radio v-model="taskForm.model" label="0">默认模型</el-radio>
@@ -69,8 +57,6 @@
     name: 'roadDamageExtract',
     data() {
       return {
-        sensorImageData:'',
-        vectorRoadData:'',
         dialogVisible:false,
         fullscreenLoading: false,
         taskForm: {
@@ -78,58 +64,41 @@
           model:'0',
           operatorStrategy:'0',
           note: '',
-          distance:''
+          distance:'',
+          resolution:''
         },
+        sensorImageOptions: [],
+        sensorImageChoose: [],
+        sensorImageList: [],
+        loading: false,
+        states: ["长沙-遥感影像", "株洲-遥感影像", "湘潭-遥感影像"],
       }
     },
+    mounted() {
+      this.sensorImageList = this.states.map(item => {
+        return { value: item, label: item };
+      });
+    },
     methods:{
-      handleRemove (file, fileList) {
-        console.log(file, fileList)
-      },
-      handlePreview (file) {
-        console.log(file)
-      },
-      handleExceed (file, fileList) {
-        this.$message({
-          showClose: true,
-          message: '只能选择 1 个文件!',
-          type: 'warning',
-          center: true
-        });
-
-      },
-      beforeRemove (file, fileList) {
-        return this.$confirm(`确定移除 ${file.name}？`)
-      },
-      upLoadImage(file)
-      {
-        const isIMAGE = (file.raw.type === 'image/jpeg' || file.raw.type === 'image/png' || file.raw.type === 'image/tif');
-
-        if (!isIMAGE) {
-          this.$message.error('只能上传jpg/png图片!');
-          return false;
-        }
-        var reader = new FileReader();
-        reader.readAsDataURL(file.raw);
-        reader.onload = function(e){
-          this.sensorImageData = this.result;//图片的base64数据
-        }
-      },
       confirmTask(){
         this.dialogVisible = true
       },
-      removeImage(file, fileList)
-      {
-        alert("111")
-      },
       clearAll(){
-        this.$refs.upload.fileList = []
+        this.taskForm = {
+          name: '',
+          model:'0',
+          operatorStrategy:'0',
+          note: '',
+          distance:''
+        }
+        this.sensorImageChoose = []
       },
       submitTask() {
         this.fullscreenLoading = true
         setTimeout(() => {
           this.fullscreenLoading = false
           this.dialogVisible = false
+          this.clearAll()
           this.$notify({
             title: '任务提交成功',
             message: '请前往 <strong>路域风险任务管理模块</strong> 查看任务执行进度！',
@@ -138,6 +107,20 @@
             duration:'2000'
 
           })}, 1000);
+      },
+      remoteMethod(query) {
+        if (query !== '') {
+          this.loading = true;
+          setTimeout(() => {
+            this.loading = false;
+            this.sensorImageOptions = this.sensorImageList.filter(item => {
+              return item.label.toLowerCase()
+                .indexOf(query.toLowerCase()) > -1;
+            });
+          }, 500);
+        } else {
+          this.sensorImageOptions = [];
+        }
       },
     }
   }
