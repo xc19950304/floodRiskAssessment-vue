@@ -53,6 +53,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
     name: 'roadDamageExtract',
     data() {
@@ -96,9 +97,20 @@
       submitTask() {
         this.fullscreenLoading = true
         setTimeout(() => {
-          this.fullscreenLoading = false
-          this.dialogVisible = false
-          this.clearAll()
+          this.fullscreenLoading = false;
+          this.dialogVisible = false;
+          this.clearAll();
+          axios.get('/home')
+            .then(response => {
+              alert('Api--ok');
+              alert(response.data);
+            })
+            .catch((error) => {
+              console.log(error)
+            });
+
+
+
           this.$notify({
             title: '任务提交成功',
             message: '请前往 <strong>路域风险任务管理模块</strong> 查看任务执行进度！',
