@@ -15,9 +15,9 @@ import i18n from './i18n/i18n'
 import Axios from 'axios'
 
 // 设置axios发送请求时默认添加一个baseURL
-Vue.prototype.$axios = Axios
+/*Vue.prototype.$axios = Axios
 Axios.defaults.baseURL = '/api'
-Axios.defaults.headers.post['Content-Type'] = 'application/json';
+Axios.defaults.headers.post['Content-Type'] = 'application/json';*/
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
